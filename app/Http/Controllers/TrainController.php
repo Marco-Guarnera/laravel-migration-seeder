@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class TrainController extends Controller
 {
     public function homepage() {
-        $trains_list = Train::all();
+        $today = today()->toDateString();
+        $trains_list = Train::where('data_partenza', $today)->get();
         return view('pages.home-page', compact('trains_list'));
     }
 }
